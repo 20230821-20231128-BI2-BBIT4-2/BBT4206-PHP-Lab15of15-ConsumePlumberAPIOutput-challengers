@@ -18,10 +18,14 @@
 # *****************************************************************************
 
 // Full documentation of the client URL (cURL) library: https://www.php.net/manual/en/book.curl.php
-
+//lab 15
 // STEP 1: Set the API endpoint URL
-$apiUrl = 'http://127.0.0.1:5022/diabetes';
 
+
+
+$apiUrl = 'http://127.0.0.1:5022/diabetes';
+// $response = file_get_contents($apiUrl);
+// echo "Response from Plumber API: " . $response;
 // Initiate a new cURL session/resource
 $curl = curl_init();
 
@@ -54,7 +58,8 @@ $params = array('arg_pregnant' => $arg_pregnant, 'arg_glucose' => $arg_glucose,
                 'arg_pedigree' => $arg_pedigree, 'arg_age' => $arg_age);
 
 // STEP 3: Set the cURL options
-// CURLOPT_RETURNTRANSFER: true to return the transfer as a string of the return value of curl_exec() instead of outputting it directly.
+// CURLOPT_RETURNTRANSFER: true to return the transfer as a string of the
+// return value of curl_exec() instead of outputting it directly.
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $apiUrl = $apiUrl . '?' . http_build_query($params);
 curl_setopt($curl, CURLOPT_URL, $apiUrl);
@@ -82,7 +87,6 @@ curl_close($curl);
 $data = json_decode($response, true);
 
 // echo "<br>The predicted output in decoded JSON format is:<br>" . var_dump($data) . "<br><br>";
-
 
 // Check if the response was successful
 if (isset($data['0'])) {
